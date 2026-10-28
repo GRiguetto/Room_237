@@ -3,9 +3,9 @@ const CONFIG = {
     devName: 'Riguetto',
 
     // themoviedb.org/settings/api (serve a "API Key" v3 ou o "Token de leitura" v4)
-    apiKey: 'colar a chave aqui quando tiver',
+    apiKey: '6928eace35047a607f70b0101f9b8072',
     lang: 'pt-BR',
-    minVotes: 100, // evita "nota 10 com 1 voto" na busca
+    minVotes: 1000, // evita "nota 10 com 1 voto" na busca
   
     // Indicados do Dev: {q:'título', year:ano} ou {id:123} (id do TMDB), mais a sua nota
     devPicks: [
