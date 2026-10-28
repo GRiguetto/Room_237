@@ -17,7 +17,7 @@ document.title=CONFIG.siteName;
 $('#logo').textContent=CONFIG.siteName;
 $('#dh').textContent='Indicados do '+CONFIG.devName;
 
-const T=['cobalto','giallo','nitrato','brasil'];let ti=0;
+const T=['cobalto','giallo','nitrato','brasil','pb','bladerunner','matrix','laranja','budapest','drive','sincity','fargo','suspiria'];let ti=0;
 try{ti=+localStorage.th||0}catch(e){}
 const setT=()=>{document.documentElement.dataset.t=T[ti%13];try{localStorage.th=ti%13}catch(e){}};
 setT();$('#th').onclick=()=>{ti++;setT()};
