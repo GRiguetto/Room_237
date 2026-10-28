@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Cineclube</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="strip"></div>
+        <header class="wrap">
+            <a class="logo" id="logo" href="#/catalogo"></a>
+            <nav><a href="#/catalogo">Catálogo</a><a href="#/recomendar">Me recomende</a><a href="#/dev">Indicados do Dev</a><button id="th" title="Trocar tema" aria-label="Trocar tema">◐</button></nav>
+        </header>
+        <main class="wrap">
+
+            <section id="v-catalogo">
+                <h1>O que vamos rebobinar hoje?</h1>
+                <form id="f" class="fx">
+                    <label>Título<input name="q" placeholder="Stalker"></label>
+                    <label>Elenco<input name="cast" placeholder="Tilda Swinton"></label>
+                    <label>Direção<input name="crew" placeholder="Agnès Varda"></label>
+                    <label>País<select name="country"><option value="">Qualquer</option></select></label>
+                    <label>Gênero<select name="genre"><option value="">Qualquer</option></select></label>
+                    <label>Ano inicial<input name="from" type="number" min="1890" max="2030" placeholder="1960"></label>
+                    <label>Ano final<input name="to" type="number" min="1890" max="2030" placeholder="2026"></label>
+                    <label><span>Nota mínima: <output id="ro">0</output></span><input name="rating" type="range" min="0" max="9" step=".5" value="0"></label>
+                    <label>Ordenar por<select name="sort"><option value="popularity.desc">Popularidade</option><option value="vote_average.desc">Melhor nota</option><option value="primary_release_date.desc">Mais recentes</option><option value="primary_release_date.asc">Mais antigos</option></select></label>
+                    <div class="bt"><button class="b">Buscar</button><button type="reset" class="b ghost">Limpar</button></div>
+                </form>
+                <p id="st"></p>
+                <div id="grid" class="grid"></div>
+                <button id="more" class="b" hidden>Carregar mais</button>
+            </section>
+
+            <section id="v-recomendar" hidden>
+                <h1>Me recomende um filme</h1>
+                <form id="reco" class="mad">
+                    <p>Hoje quero ver <select name="mood"></select> <select name="place"></select> <select name="era"></select>, com cara de <select name="cult"></select> e <select name="len"></select>.</p>
+                    <button class="b">Me entregue um filme</button>
+                </form>
+                <div id="result"></div>
+            </section>
+
+            <section id="v-dev" hidden>
+                <h1 id="dh"></h1>
+                <p>Filmes que eu indico. Edite a lista em config.js.</p>
+                <div id="dev" class="grid dev"></div>
+            </section>
+
+        </main>
+
+        <footer class="wrap"><p>Dados e imagens: <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. Este produto usa a API do TMDB, mas não é endossado nem certificado por ela.</p></footer>
+        <div class="strip"></div>
+        <dialog id="dlg"><button class="x" data-x aria-label="Fechar">×</button><div id="dbody"></div></dialog>
+        <script src="js/config.js"></script>
+        <script src="js/app.js"></script>
+
+    </body>
+</html>
