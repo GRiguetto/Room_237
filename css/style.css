@@ -1,0 +1,579 @@
+/* ==========================================================
+   TEMAS: cada tema tem 5 cores. Para criar outro, copie um
+   bloco, troque o nome em [data-t=...] e ajuste os valores.
+     --bg   fundo da página        --cd  painéis e cartões
+     --ink  texto, bordas, sombras --ac  destaque (logo, botões)
+     --mu   texto secundário
+   O botão ◐ alterna entre os temas.
+   ========================================================== */
+
+/* padrão: azul e amarelo */
+:root {
+    --bg: #272e79;
+    --cd: #343d93;
+    --ink: #f8eccb;
+    --ac: #e7b923;
+    --mu: #aeb5f1;
+  }
+  
+  /* giallo: thriller italiano, amarelo e carmim */
+  [data-t=giallo] {
+    --bg: #e3ca63;
+    --cd: #f0df99;
+    --ink: #211634;
+    --ac: #9a2637;
+    --mu: #544622;
+  }
+  
+  /* nitrato: filme de nitrato, sépia e laranja */
+  [data-t=nitrato] {
+    --bg: #19120c;
+    --cd: #251911;
+    --ink: #eedfc4;
+    --ac: #d68a3d;
+    --mu: #b29b7a;
+  }
+  
+  /* brasil: verde, azul e amarelo */
+  [data-t=brasil] {
+    --bg: #255639;
+    --cd: #26416b;
+    --ink: #f4efd8;
+    --ac: #e6c94f;
+    --mu: #b4cdea;
+  }
+  
+  /* preto e branco */
+  [data-t=pb] {
+    --bg: #ebebeb;
+    --cd: #f7f7f7;
+    --ink: #333333;
+    --ac: #000000;
+    --mu: #626262;
+  }
+  
+  /* ---------- filmes cult ---------- */
+  
+  /* Blade Runner: azul-petróleo e coral néon */
+  [data-t=bladerunner] {
+    --bg: #0e1b26;
+    --cd: #16293a;
+    --ink: #dde8ef;
+    --ac: #e07a5f;
+    --mu: #7fa3b6;
+  }
+  
+  /* Matrix: verde sobre preto */
+  [data-t=matrix] {
+    --bg: #08140e;
+    --cd: #0f2217;
+    --ink: #cfe9d6;
+    --ac: #5cc489;
+    --mu: #6fa283;
+  }
+  
+  /* Laranja Mecânica: creme e laranja queimado */
+  [data-t=laranja] {
+    --bg: #ece4d2;
+    --cd: #f6f1e4;
+    --ink: #1a1510;
+    --ac: #9a4f1c;
+    --mu: #6b5a45;
+  }
+  
+  /* O Grande Hotel Budapeste: rosa e ameixa */
+  [data-t=budapest] {
+    --bg: #ecc8d1;
+    --cd: #f6dde3;
+    --ink: #3a1c36;
+    --ac: #9a2e52;
+    --mu: #6e4262;
+  }
+  
+  /* Drive: roxo noturno e rosa */
+  [data-t=drive] {
+    --bg: #1b1530;
+    --cd: #271f46;
+    --ink: #efe6f6;
+    --ac: #dc76a6;
+    --mu: #a99bd0;
+  }
+  
+  /* Sin City: preto, branco e vermelho */
+  [data-t=sincity] {
+    --bg: #0b0b0b;
+    --cd: #1a1a1a;
+    --ink: #f0f0f0;
+    --ac: #d44d4d;
+    --mu: #8c8c8c;
+  }
+  
+  /* Fargo: neve e tijolo */
+  [data-t=fargo] {
+    --bg: #dbe3e8;
+    --cd: #e9eff2;
+    --ink: #1b2832;
+    --ac: #a5432b;
+    --mu: #4d6676;
+  }
+  
+  /* Suspiria: vinho e verde-água */
+  [data-t=suspiria] {
+    --bg: #3a151f;
+    --cd: #4a1d2b;
+    --ink: #f2e1da;
+    --ac: #4fb5a8;
+    --mu: #cba0a8;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1rem/1.6 'Hanken Grotesk', system-ui, sans-serif;
+  }
+  
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 40px);
+  }
+  
+  .strip {
+    height: 26px;
+    background:
+      linear-gradient(90deg, var(--bg) 14px, transparent 14px) 6px 50% / 26px 12px repeat-x,
+      var(--ink);
+  }
+  
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 30px;
+    padding-top: 22px;
+    padding-bottom: 10px;
+  }
+  
+  .logo {
+    font: 400 clamp(2rem, 6vw, 3rem)/1 'Abril Fatface', serif;
+    color: var(--ac);
+    text-decoration: none;
+  }
+  
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 24px;
+  }
+  
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 4px 0;
+    border-bottom: 3px solid transparent;
+  }
+  
+  nav a:hover,
+  nav a.on {
+    border-color: var(--ac);
+  }
+  
+  #th {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: none;
+    color: var(--ink);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  h1,
+  h2 {
+    font: 400 clamp(2.4rem, 7.5vw, 5.4rem)/1 'Abril Fatface', serif;
+    margin: .45em 0 .35em;
+    letter-spacing: -.01em;
+  }
+  
+  h2 {
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+  }
+  
+  .fx {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px 20px;
+    margin: 26px 0;
+    padding: 22px;
+    background: var(--cd);
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ac);
+  }
+  
+  label {
+    display: grid;
+    gap: 4px;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--mu);
+  }
+  
+  input,
+  select {
+    font: 400 1rem 'Hanken Grotesk', sans-serif;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--ink);
+    border-radius: 0;
+    padding: 6px 0;
+    min-width: 0;
+    outline: 0;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: var(--ac);
+  }
+  
+  input[type=range] {
+    accent-color: var(--ac);
+    border: 0;
+    padding: 0;
+  }
+  
+  input::placeholder {
+    color: var(--mu);
+    opacity: .7;
+  }
+  
+  option {
+    background: #fff;
+    color: #111;
+    font: 400 1rem 'Hanken Grotesk', sans-serif;
+  }
+  
+  .bt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: end;
+  }
+  
+  .b {
+    display: inline-block;
+    cursor: pointer;
+    background: var(--ac);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 10px 20px;
+    font: 600 .95rem 'Hanken Grotesk', sans-serif;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  
+  .b:hover {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+  
+  .ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+  
+  [hidden] {
+    display: none !important;
+  }
+  
+  #more {
+    margin: 44px auto;
+    display: block;
+  }
+  
+  #st {
+    color: var(--mu);
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+    gap: 30px 18px;
+  }
+  
+  .card {
+    all: unset;
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .card:focus-visible {
+    outline: 3px solid var(--ac);
+    outline-offset: 5px;
+  }
+  
+  .card img,
+  .noimg {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border: 2px solid var(--ink);
+    background: var(--cd);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  
+  .card:hover img,
+  .card:hover .noimg {
+    border-color: var(--ac);
+    box-shadow: 5px 5px 0 var(--ac);
+  }
+  
+  .noimg {
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    text-align: center;
+    font: 1.2rem/1.1 'Abril Fatface', serif;
+  }
+  
+  .card b {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  .card small {
+    color: var(--mu);
+    font-size: .85rem;
+  }
+  
+  .nota {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--ac);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    font: 1rem 'Abril Fatface', serif;
+    transform: rotate(8deg);
+  }
+  
+  .dev {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  }
+  
+  .pick p {
+    margin: 10px 0 0;
+    padding-left: 12px;
+    border-left: 4px solid var(--ac);
+    font-size: .95rem;
+  }
+  
+  .mad p {
+    font: 400 clamp(1.9rem, 5.4vw, 3.6rem)/1.55 'Abril Fatface', serif;
+    margin: 10px 0 30px;
+    max-width: 22em;
+  }
+  
+  .mad select {
+    font: inherit;
+    background: var(--ac);
+    color: var(--bg);
+    border: 0;
+    padding: 0 .25em;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    field-sizing: content;
+    max-width: 100%;
+  }
+  
+  .mad select:nth-of-type(odd) {
+    transform: rotate(-1deg);
+  }
+  
+  .mad select:nth-of-type(even) {
+    transform: rotate(1.2deg);
+  }
+  
+  .mad select:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+  
+  .hit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--ink);
+  }
+  
+  .hit img {
+    width: min(300px, 100%);
+    align-self: flex-start;
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ac);
+  }
+  
+  .hit > div {
+    flex: 1 1 300px;
+    max-width: 64ch;
+  }
+  
+  .hit h2 {
+    margin-top: 0;
+  }
+  
+  .hit .b {
+    margin: 0 10px 10px 0;
+  }
+  
+  dialog {
+    width: min(920px, 94vw);
+    max-height: 92vh;
+    overflow: auto;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ac);
+  }
+  
+  dialog::backdrop {
+    background: rgba(5, 5, 20, .75);
+  }
+  
+  .x {
+    position: sticky;
+    top: 8px;
+    float: right;
+    z-index: 2;
+    margin: 8px;
+    width: 38px;
+    height: 38px;
+    border: 2px solid var(--ink);
+    background: var(--ac);
+    color: var(--bg);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  
+  .dd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding: clamp(18px, 4vw, 34px);
+  }
+  
+  .dd img {
+    width: min(250px, 100%);
+    align-self: flex-start;
+    border: 2px solid var(--ink);
+  }
+  
+  .dd > div {
+    flex: 1 1 300px;
+    min-width: 0;
+  }
+  
+  .dd h2 {
+    margin-top: 0;
+  }
+  
+  .ft {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    margin: 16px 0;
+    border: 2px solid var(--ink);
+  }
+  
+  .ft div {
+    padding: 8px 12px;
+    border-right: 2px solid var(--ink);
+  }
+  
+  .ft div:last-child {
+    border: 0;
+  }
+  
+  .ft dt {
+    font-size: .78rem;
+    color: var(--mu);
+  }
+  
+  .ft dd {
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .tag {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ac);
+  }
+  
+  .sub {
+    margin: 14px 0 4px;
+    font-weight: 600;
+    color: var(--mu);
+    font-size: .85rem;
+  }
+  
+  .chip {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 6px 6px 0;
+    padding: 2px 11px;
+    border: 2px solid var(--ink);
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  
+  span.chip {
+    cursor: default;
+  }
+  
+  button.chip:hover,
+  button.chip:focus-visible {
+    background: var(--ac);
+    color: var(--bg);
+    border-color: var(--ac);
+  }
+  
+  footer {
+    padding-top: 34px;
+    padding-bottom: 30px;
+    color: var(--mu);
+    font-size: .85rem;
+  }
+  
+  footer a {
+    color: var(--ac);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }

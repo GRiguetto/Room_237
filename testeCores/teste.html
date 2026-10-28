@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prévia dos temas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Hanken+Grotesk:wght@400;600&display=swap">
+<style>
+/* ==========================================================
+   TEMAS: cada tema tem 5 cores. Para criar outro, copie um
+   bloco, troque o nome em [data-t=...] e ajuste os valores.
+     --bg   fundo da página        --cd  painéis e cartões
+     --ink  texto, bordas, sombras --ac  destaque (logo, botões)
+     --mu   texto secundário
+   O botão ◐ alterna entre os temas.
+   ========================================================== */
+
+/* padrão: azul e amarelo */
+:root {
+  --bg: #272e79;
+  --cd: #343d93;
+  --ink: #f8eccb;
+  --ac: #e7b923;
+  --mu: #aeb5f1;
+}
+
+/* giallo: thriller italiano, amarelo e carmim */
+[data-t=giallo] {
+  --bg: #e3ca63;
+  --cd: #f0df99;
+  --ink: #211634;
+  --ac: #9a2637;
+  --mu: #544622;
+}
+
+/* nitrato: filme de nitrato, sépia e laranja */
+[data-t=nitrato] {
+  --bg: #19120c;
+  --cd: #251911;
+  --ink: #eedfc4;
+  --ac: #d68a3d;
+  --mu: #b29b7a;
+}
+
+/* brasil: verde, azul e amarelo */
+[data-t=brasil] {
+  --bg: #255639;
+  --cd: #26416b;
+  --ink: #f4efd8;
+  --ac: #e6c94f;
+  --mu: #b4cdea;
+}
+
+/* preto e branco */
+[data-t=pb] {
+  --bg: #ebebeb;
+  --cd: #f7f7f7;
+  --ink: #333333;
+  --ac: #000000;
+  --mu: #626262;
+}
+
+/* ---------- filmes cult ---------- */
+
+/* Blade Runner: azul-petróleo e coral néon */
+[data-t=bladerunner] {
+  --bg: #0e1b26;
+  --cd: #16293a;
+  --ink: #dde8ef;
+  --ac: #e07a5f;
+  --mu: #7fa3b6;
+}
+
+/* Matrix: verde sobre preto */
+[data-t=matrix] {
+  --bg: #08140e;
+  --cd: #0f2217;
+  --ink: #cfe9d6;
+  --ac: #5cc489;
+  --mu: #6fa283;
+}
+
+/* Laranja Mecânica: creme e laranja queimado */
+[data-t=laranja] {
+  --bg: #ece4d2;
+  --cd: #f6f1e4;
+  --ink: #1a1510;
+  --ac: #9a4f1c;
+  --mu: #6b5a45;
+}
+
+/* O Grande Hotel Budapeste: rosa e ameixa */
+[data-t=budapest] {
+  --bg: #ecc8d1;
+  --cd: #f6dde3;
+  --ink: #3a1c36;
+  --ac: #9a2e52;
+  --mu: #6e4262;
+}
+
+/* Drive: roxo noturno e rosa */
+[data-t=drive] {
+  --bg: #1b1530;
+  --cd: #271f46;
+  --ink: #efe6f6;
+  --ac: #dc76a6;
+  --mu: #a99bd0;
+}
+
+/* Sin City: preto, branco e vermelho */
+[data-t=sincity] {
+  --bg: #0b0b0b;
+  --cd: #1a1a1a;
+  --ink: #f0f0f0;
+  --ac: #d44d4d;
+  --mu: #8c8c8c;
+}
+
+/* Fargo: neve e tijolo */
+[data-t=fargo] {
+  --bg: #dbe3e8;
+  --cd: #e9eff2;
+  --ink: #1b2832;
+  --ac: #a5432b;
+  --mu: #4d6676;
+}
+
+/* Suspiria: vinho e verde-água */
+[data-t=suspiria] {
+  --bg: #3a151f;
+  --cd: #4a1d2b;
+  --ink: #f2e1da;
+  --ac: #4fb5a8;
+  --mu: #cba0a8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.6 'Hanken Grotesk', system-ui, sans-serif;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px);
+}
+
+.strip {
+  height: 26px;
+  background:
+    linear-gradient(90deg, var(--bg) 14px, transparent 14px) 6px 50% / 26px 12px repeat-x,
+    var(--ink);
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 30px;
+  padding-top: 22px;
+  padding-bottom: 10px;
+}
+
+.logo {
+  font: 400 clamp(2rem, 6vw, 3rem)/1 'Abril Fatface', serif;
+  color: var(--ac);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 24px;
+}
+
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 4px 0;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.on {
+  border-color: var(--ac);
+}
+
+#th {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: none;
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  font: 400 clamp(2.4rem, 7.5vw, 5.4rem)/1 'Abril Fatface', serif;
+  margin: .45em 0 .35em;
+  letter-spacing: -.01em;
+}
+
+h2 {
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+}
+
+.fx {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 18px 20px;
+  margin: 26px 0;
+  padding: 22px;
+  background: var(--cd);
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ac);
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--mu);
+}
+
+input,
+select {
+  font: 400 1rem 'Hanken Grotesk', sans-serif;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  padding: 6px 0;
+  min-width: 0;
+  outline: 0;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--ac);
+}
+
+input[type=range] {
+  accent-color: var(--ac);
+  border: 0;
+  padding: 0;
+}
+
+input::placeholder {
+  color: var(--mu);
+  opacity: .7;
+}
+
+option {
+  background: #fff;
+  color: #111;
+  font: 400 1rem 'Hanken Grotesk', sans-serif;
+}
+
+.bt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+}
+
+.b {
+  display: inline-block;
+  cursor: pointer;
+  background: var(--ac);
+  color: var(--bg);
+  border: 2px solid var(--ink);
+  padding: 10px 20px;
+  font: 600 .95rem 'Hanken Grotesk', sans-serif;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.b:hover {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#more {
+  margin: 44px auto;
+  display: block;
+}
+
+#st {
+  color: var(--mu);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  gap: 30px 18px;
+}
+
+.card {
+  all: unset;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--ac);
+  outline-offset: 5px;
+}
+
+.card img,
+.noimg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  background: var(--cd);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.card:hover img,
+.card:hover .noimg {
+  border-color: var(--ac);
+  box-shadow: 5px 5px 0 var(--ac);
+}
+
+.noimg {
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  text-align: center;
+  font: 1.2rem/1.1 'Abril Fatface', serif;
+}
+
+.card b {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.card small {
+  color: var(--mu);
+  font-size: .85rem;
+}
+
+.nota {
+  position: absolute;
+  top: -10px;
+  right: -8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ac);
+  color: var(--bg);
+  border: 2px solid var(--ink);
+  font: 1rem 'Abril Fatface', serif;
+  transform: rotate(8deg);
+}
+
+.dev {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+}
+
+.pick p {
+  margin: 10px 0 0;
+  padding-left: 12px;
+  border-left: 4px solid var(--ac);
+  font-size: .95rem;
+}
+
+.mad p {
+  font: 400 clamp(1.9rem, 5.4vw, 3.6rem)/1.55 'Abril Fatface', serif;
+  margin: 10px 0 30px;
+  max-width: 22em;
+}
+
+.mad select {
+  font: inherit;
+  background: var(--ac);
+  color: var(--bg);
+  border: 0;
+  padding: 0 .25em;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  field-sizing: content;
+  max-width: 100%;
+}
+
+.mad select:nth-of-type(odd) {
+  transform: rotate(-1deg);
+}
+
+.mad select:nth-of-type(even) {
+  transform: rotate(1.2deg);
+}
+
+.mad select:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.hit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid var(--ink);
+}
+
+.hit img {
+  width: min(300px, 100%);
+  align-self: flex-start;
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ac);
+}
+
+.hit > div {
+  flex: 1 1 300px;
+  max-width: 64ch;
+}
+
+.hit h2 {
+  margin-top: 0;
+}
+
+.hit .b {
+  margin: 0 10px 10px 0;
+}
+
+dialog {
+  width: min(920px, 94vw);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--ac);
+}
+
+dialog::backdrop {
+  background: rgba(5, 5, 20, .75);
+}
+
+.x {
+  position: sticky;
+  top: 8px;
+  float: right;
+  z-index: 2;
+  margin: 8px;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--ink);
+  background: var(--ac);
+  color: var(--bg);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: clamp(18px, 4vw, 34px);
+}
+
+.dd img {
+  width: min(250px, 100%);
+  align-self: flex-start;
+  border: 2px solid var(--ink);
+}
+
+.dd > div {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.dd h2 {
+  margin-top: 0;
+}
+
+.ft {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  margin: 16px 0;
+  border: 2px solid var(--ink);
+}
+
+.ft div {
+  padding: 8px 12px;
+  border-right: 2px solid var(--ink);
+}
+
+.ft div:last-child {
+  border: 0;
+}
+
+.ft dt {
+  font-size: .78rem;
+  color: var(--mu);
+}
+
+.ft dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.tag {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--ac);
+}
+
+.sub {
+  margin: 14px 0 4px;
+  font-weight: 600;
+  color: var(--mu);
+  font-size: .85rem;
+}
+
+.chip {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  padding: 2px 11px;
+  border: 2px solid var(--ink);
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+span.chip {
+  cursor: default;
+}
+
+button.chip:hover,
+button.chip:focus-visible {
+  background: var(--ac);
+  color: var(--bg);
+  border-color: var(--ac);
+}
+
+footer {
+  padding-top: 34px;
+  padding-bottom: 30px;
+  color: var(--mu);
+  font-size: .85rem;
+}
+
+footer a {
+  color: var(--ac);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+
+body{background:#1c1c1c;color:#e6e6e6;font:400 1rem/1.5 system-ui,sans-serif;margin:0;padding:28px clamp(16px,3vw,40px) 60px}
+.pv-wrap{max-width:1500px;margin:0 auto}
+.pv-wrap h1{font:700 1.5rem/1.2 system-ui,sans-serif;margin:0 0 6px;letter-spacing:0}
+.pv-intro{margin:0 0 28px;color:#a0a0a0;max-width:72ch}
+.pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:36px 26px}
+.pv-rot{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;margin-bottom:8px}
+.pv-rot b{font:700 1rem ui-monospace,monospace}
+.pv-rot span{color:#a0a0a0;font-size:.9rem}
+.amostra{background:var(--bg);color:var(--ink);font:400 1rem/1.6 'Hanken Grotesk',system-ui,sans-serif;padding-bottom:24px;overflow:hidden}
+.amostra .in{padding:0 22px}
+.amostra .logo{font-size:2rem}
+.amostra .grid{grid-template-columns:repeat(2,1fr);gap:20px 14px}
+.amostra .fx{margin:18px 0}
+.amostra .bt{margin-bottom:22px}
+.amostra .tag{margin:10px 0 0}
+.pv-sw{display:grid;grid-template-columns:repeat(5,1fr);margin-top:4px}
+.pv-sw span{padding:6px 2px;font:600 .66rem/1.3 ui-monospace,monospace;text-align:center}
+.pv-sw-t{font-size:.7rem;color:#8a8a8a;margin:8px 0 0}
+
+</style>
+</head>
+<body>
+<div class="pv-wrap">
+<h1>Prévia dos temas</h1>
+<p class="pv-intro">Gerada a partir do estilo-temas.css. Os três primeiros mostram também as cores originais (antes) e as suavizadas (depois).</p>
+<div class="pv-grid">
+<div class="pv-item">
+  <div class="pv-rot"><b>padrão</b><span>azul e amarelo</span></div>
+  <section class="amostra">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">antes (original)</div><div class="pv-sw"><span style="background:#16208a;color:#fff">bg<br>#16208a</span><span style="background:#1f2ca8;color:#fff">cd<br>#1f2ca8</span><span style="background:#fff1c9;color:#000">ink<br>#fff1c9</span><span style="background:#ffc400;color:#000">ac<br>#ffc400</span><span style="background:#aab3ff;color:#000">mu<br>#aab3ff</span></div><div class="pv-sw-t">depois (suavizado)</div><div class="pv-sw"><span style="background:#272e79;color:#fff">bg<br>#272e79</span><span style="background:#343d93;color:#fff">cd<br>#343d93</span><span style="background:#f8eccb;color:#000">ink<br>#f8eccb</span><span style="background:#e7b923;color:#000">ac<br>#e7b923</span><span style="background:#aeb5f1;color:#000">mu<br>#aeb5f1</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>giallo</b><span>thriller italiano</span></div>
+  <section class="amostra" data-t="giallo">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">antes (original)</div><div class="pv-sw"><span style="background:#f6c90e;color:#000">bg<br>#f6c90e</span><span style="background:#ffdf5c;color:#000">cd<br>#ffdf5c</span><span style="background:#1c1030;color:#fff">ink<br>#1c1030</span><span style="background:#d1122f;color:#fff">ac<br>#d1122f</span><span style="background:#5c4a1a;color:#fff">mu<br>#5c4a1a</span></div><div class="pv-sw-t">depois (suavizado)</div><div class="pv-sw"><span style="background:#e3ca63;color:#000">bg<br>#e3ca63</span><span style="background:#f0df99;color:#000">cd<br>#f0df99</span><span style="background:#211634;color:#fff">ink<br>#211634</span><span style="background:#9a2637;color:#fff">ac<br>#9a2637</span><span style="background:#544622;color:#fff">mu<br>#544622</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>nitrato</b><span>filme de nitrato</span></div>
+  <section class="amostra" data-t="nitrato">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">antes (original)</div><div class="pv-sw"><span style="background:#1a120b;color:#fff">bg<br>#1a120b</span><span style="background:#27190f;color:#fff">cd<br>#27190f</span><span style="background:#f4e3c3;color:#000">ink<br>#f4e3c3</span><span style="background:#f08a24;color:#000">ac<br>#f08a24</span><span style="background:#b79c75;color:#000">mu<br>#b79c75</span></div><div class="pv-sw-t">depois (suavizado)</div><div class="pv-sw"><span style="background:#19120c;color:#fff">bg<br>#19120c</span><span style="background:#251911;color:#fff">cd<br>#251911</span><span style="background:#eedfc4;color:#000">ink<br>#eedfc4</span><span style="background:#d68a3d;color:#000">ac<br>#d68a3d</span><span style="background:#b29b7a;color:#000">mu<br>#b29b7a</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>brasil</b><span>verde, azul e amarelo</span></div>
+  <section class="amostra" data-t="brasil">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#255639;color:#fff">bg<br>#255639</span><span style="background:#26416b;color:#fff">cd<br>#26416b</span><span style="background:#f4efd8;color:#000">ink<br>#f4efd8</span><span style="background:#e6c94f;color:#000">ac<br>#e6c94f</span><span style="background:#b4cdea;color:#000">mu<br>#b4cdea</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>pb</b><span>preto e branco</span></div>
+  <section class="amostra" data-t="pb">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#ebebeb;color:#000">bg<br>#ebebeb</span><span style="background:#f7f7f7;color:#000">cd<br>#f7f7f7</span><span style="background:#333333;color:#fff">ink<br>#333333</span><span style="background:#000000;color:#fff">ac<br>#000000</span><span style="background:#626262;color:#fff">mu<br>#626262</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>bladerunner</b><span>Blade Runner</span></div>
+  <section class="amostra" data-t="bladerunner">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#0e1b26;color:#fff">bg<br>#0e1b26</span><span style="background:#16293a;color:#fff">cd<br>#16293a</span><span style="background:#dde8ef;color:#000">ink<br>#dde8ef</span><span style="background:#e07a5f;color:#000">ac<br>#e07a5f</span><span style="background:#7fa3b6;color:#000">mu<br>#7fa3b6</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>matrix</b><span>Matrix</span></div>
+  <section class="amostra" data-t="matrix">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#08140e;color:#fff">bg<br>#08140e</span><span style="background:#0f2217;color:#fff">cd<br>#0f2217</span><span style="background:#cfe9d6;color:#000">ink<br>#cfe9d6</span><span style="background:#5cc489;color:#000">ac<br>#5cc489</span><span style="background:#6fa283;color:#000">mu<br>#6fa283</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>laranja</b><span>Laranja Mecânica</span></div>
+  <section class="amostra" data-t="laranja">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#ece4d2;color:#000">bg<br>#ece4d2</span><span style="background:#f6f1e4;color:#000">cd<br>#f6f1e4</span><span style="background:#1a1510;color:#fff">ink<br>#1a1510</span><span style="background:#9a4f1c;color:#fff">ac<br>#9a4f1c</span><span style="background:#6b5a45;color:#fff">mu<br>#6b5a45</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>budapest</b><span>O Grande Hotel Budapeste</span></div>
+  <section class="amostra" data-t="budapest">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#ecc8d1;color:#000">bg<br>#ecc8d1</span><span style="background:#f6dde3;color:#000">cd<br>#f6dde3</span><span style="background:#3a1c36;color:#fff">ink<br>#3a1c36</span><span style="background:#9a2e52;color:#fff">ac<br>#9a2e52</span><span style="background:#6e4262;color:#fff">mu<br>#6e4262</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>drive</b><span>Drive</span></div>
+  <section class="amostra" data-t="drive">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#1b1530;color:#fff">bg<br>#1b1530</span><span style="background:#271f46;color:#fff">cd<br>#271f46</span><span style="background:#efe6f6;color:#000">ink<br>#efe6f6</span><span style="background:#dc76a6;color:#000">ac<br>#dc76a6</span><span style="background:#a99bd0;color:#000">mu<br>#a99bd0</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>sincity</b><span>Sin City</span></div>
+  <section class="amostra" data-t="sincity">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#0b0b0b;color:#fff">bg<br>#0b0b0b</span><span style="background:#1a1a1a;color:#fff">cd<br>#1a1a1a</span><span style="background:#f0f0f0;color:#000">ink<br>#f0f0f0</span><span style="background:#d44d4d;color:#000">ac<br>#d44d4d</span><span style="background:#8c8c8c;color:#000">mu<br>#8c8c8c</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>fargo</b><span>Fargo</span></div>
+  <section class="amostra" data-t="fargo">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#dbe3e8;color:#000">bg<br>#dbe3e8</span><span style="background:#e9eff2;color:#000">cd<br>#e9eff2</span><span style="background:#1b2832;color:#fff">ink<br>#1b2832</span><span style="background:#a5432b;color:#fff">ac<br>#a5432b</span><span style="background:#4d6676;color:#fff">mu<br>#4d6676</span></div>
+</div>
+<div class="pv-item">
+  <div class="pv-rot"><b>suspiria</b><span>Suspiria</span></div>
+  <section class="amostra" data-t="suspiria">
+    <div class="strip"></div>
+    <div class="in">
+      <header><span class="logo">Cine</span><nav><a href="#" class="on">Filmes</a><a href="#">Listas</a></nav></header>
+      <div class="fx">
+        <label>Buscar<input placeholder="Título do filme"></label>
+        <label>Gênero<select><option>Todos</option></select></label>
+      </div>
+      <div class="bt"><a class="b" href="#">Sortear</a><a class="b ghost" href="#">Limpar</a></div>
+      <div class="grid">
+        <div class="card"><div class="noimg">Pôster</div><b>Título do filme</b><small>1975 · Drama</small><span class="nota">8,4</span></div>
+        <div class="card"><div class="noimg">Pôster</div><b>Outro filme</b><small>1982 · Ficção</small><span class="nota">9,1</span></div>
+      </div>
+      <p class="sub">Rótulo secundário</p>
+      <span class="chip">Cult</span><span class="chip">Drama</span>
+      <p class="tag">Frase em destaque</p>
+    </div>
+  </section>
+  <div class="pv-sw-t">cores</div><div class="pv-sw"><span style="background:#3a151f;color:#fff">bg<br>#3a151f</span><span style="background:#4a1d2b;color:#fff">cd<br>#4a1d2b</span><span style="background:#f2e1da;color:#000">ink<br>#f2e1da</span><span style="background:#4fb5a8;color:#000">ac<br>#4fb5a8</span><span style="background:#cba0a8;color:#000">mu<br>#cba0a8</span></div>
+</div>
+</div>
+</div>
+</body>
+</html>
