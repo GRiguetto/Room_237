@@ -92,14 +92,32 @@ R.onsubmit=async e=>{
 
 /* Indicados do Dev */
 const dev=$('#dev');
-async function loadDev(){
-  if(dev.dataset.ok)return;
-  dev.innerHTML='<p>Carregando…</p>';
-  const ms=(await Promise.all(CONFIG.devPicks.map(async p=>{try{
-    const m=p.id?await api('/movie/'+p.id):(await api('/search/movie',{query:p.q,year:p.year})).results[0];
-    return m&&{...m,note:p.note}}catch(e){return null}}))).filter(Boolean);
-  dev.innerHTML=ms.length?ms.map(m=>`<article class="pick">${card(m)}<p>${esc(m.note||'')}</p></article>`).join(''):'<p>Nenhum filme carregado. Confira devPicks e a chave da API no config.js.</p>';
-  if(ms.length)dev.dataset.ok=1;
+const pick=async([q,year,nota,note])=>{try{
+  const m=typeof q=='number'?await api('/movie/'+q):(await api('/search/movie',{query:q,year})).results[0];
+  return m&&{...m,vote_average:nota,note}}catch(e){return null}};
+const pickCard=m=>`<article class="pick">${card(m)}${m.note?`<p>${esc(m.note)}</p>`:''}</article>`;
+function loadDev(){
+  if(dev.dataset.ok)return;dev.dataset.ok=1;dev.className='genres';
+  dev.insertAdjacentHTML('beforebegin','<p class="sub">O selo redondo é a nota do Dev, de 0 a 10.</p>');
+  const io=new IntersectionObserver(es=>es.forEach(async e=>{
+    if(!e.isIntersecting)return;io.unobserve(e.target);
+    const s=e.target,g=s.dataset.g,box=s.querySelector('.grid');
+    if(g){
+      const ms=(await Promise.all(CONFIG.devPicks[g].map(pick))).filter(Boolean);
+      box.innerHTML=ms.map(pickCard).join('')||'<p>Nada carregado. Confira a chave da API no config.js.</p>';
+    }else{
+      const ms=(await Promise.all(CONFIG.inspirados.map(async([q,y,t,n])=>{const m=await pick([q,y,0,n]);return m&&{...m,t}}))).filter(Boolean);
+      box.innerHTML=ms.map(m=>`<article class="pick">${card(m)}${m.note?`<p>${esc(m.note)}</p>`:''}${m.t?`<button class="chip" data-tema="${esc(m.t)}">Tema ${esc(m.t)}</button>`:''}</article>`).join('');
+    }
+  }),{rootMargin:'300px'});
+  for(const g in CONFIG.devPicks)dev.insertAdjacentHTML('beforeend',`<section class="gen" data-g="${esc(g)}"><h2>${esc(g)}</h2><div class="grid dev"></div></section>`);
+  dev.insertAdjacentHTML('beforeend','<section class="ins"><h3>Filmes que inspiraram o site</h3><p class="sub">Cada um virou um tema. Clique no botão para trocar o visual.</p><div class="grid mini"></div></section>');
+  dev.querySelectorAll('section').forEach(s=>io.observe(s));
+  dev.addEventListener('click',e=>{
+    const b=e.target.closest('[data-tema]');if(!b)return;
+    const i=typeof T!='undefined'?T.indexOf(b.dataset.tema):-1;
+    if(i>=0&&typeof setT=='function'){ti=i;setT()}else document.documentElement.dataset.t=b.dataset.tema;
+  });
 }
 
 /* Detalhes do filme */

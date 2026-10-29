@@ -577,3 +577,16 @@
       transition: none !important;
     }
   }
+
+  .genres{display:block}
+  .gen{margin-bottom:24px}
+  .gen h2{margin:1.3em 0 .6em;padding-bottom:.2em;border-bottom:2px solid var(--ink)}
+  .gen .grid:empty{min-height:460px}
+  .ins{margin-top:90px;padding-top:24px;border-top:2px dashed var(--ink)}
+  .ins h3{font:400 1.5rem/1.1 'Abril Fatface',serif;margin:0 0 4px}
+  .ins .grid:empty{min-height:300px}
+  .mini{grid-template-columns:repeat(auto-fill,minmax(min(100%,110px),1fr));gap:22px 14px}
+  .mini .nota{display:none}
+  .mini .card b{font-size:.85rem}
+  .mini .pick p{font-size:.8rem}
+  .mini .chip{margin-top:8px;font-size:.75rem}
